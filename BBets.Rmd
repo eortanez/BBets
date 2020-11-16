@@ -45,8 +45,34 @@ print(sortProfit[975])
 ```
 
 The 95% confidence interval that the value range from `r sortProfit[25]` to `r sortProfit[975]`.
-However if you run that code again, the value will continue to change.  
+However if you run that code again, the value will continue to change. 
 
+We know now that 35 students is the wrong size for this 2:1 bet.   
+  
+```{r}
+days=1:365
+saveProfit=vector("numeric")
+for(run in 1:1000){
+  
+
+profit=0
+for(i in 1:637){
+bdays=sample(days,size=29,replace=TRUE)  
+n=length(unique(bdays))
+if(n<29){
+  profit=profit+1
+ }else{profit=profit-2}
+}
+saveProfit[run]=profit
+}
+
+```
+```{r}
+hist(saveProfit)
+```
+  
+Based off this chart we can agree that 28 or 29 students is the right size for this 2:1 bet.    
+  
 <!-- We recommend you use git branches -- create a separate branch for each major section i.e. Introduction, Methods, Results, Inferential Results, and Discussion and Conclusions - leave the YAML block untouched until the final merge where you put in your own name !-->
 
 # Introduction
