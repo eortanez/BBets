@@ -72,6 +72,30 @@ hist(saveProfit)
 ```
   
 Based off this chart we can agree that 28 or 29 students is the right size for this 2:1 bet.    
+
+```{r}
+days=1:365
+saveProfit=vector("numeric")
+for(run in 1:1000){
+  
+
+profit=0
+for(i in 1:637){
+bdays=sample(days,size=35,replace=TRUE)  
+n=length(unique(bdays))
+if(n<35){
+  profit=profit+1
+ }else{profit=profit-4.5}
+}
+saveProfit[run]=profit
+}
+
+```
+```{r}
+hist(saveProfit)
+```  
+  
+This chart shows us that in order for this to be a fair game with 35 students, Dr. J must pay $4.50 each time he loses.   
   
 <!-- We recommend you use git branches -- create a separate branch for each major section i.e. Introduction, Methods, Results, Inferential Results, and Discussion and Conclusions - leave the YAML block untouched until the final merge where you put in your own name !-->
 
